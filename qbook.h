@@ -15,6 +15,9 @@ public:
     explicit qbook(QWidget *parent = nullptr);
     ~qbook();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::qbook *ui;
 };
