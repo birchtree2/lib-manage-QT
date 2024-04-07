@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
         qDebug()<<"数据库打开失败";
     }
 
-    MainWindow w;
+    login w;
     w.show();
     return a.exec();
 }

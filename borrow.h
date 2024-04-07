@@ -12,7 +12,7 @@ class borrow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit borrow(QWidget *parent = nullptr);
+    explicit borrow(const QString& uid,QWidget *parent = nullptr);
     ~borrow();
 
 private slots:
@@ -26,6 +26,7 @@ private:
     bool is_valid_cno(const QString& cno);
     bool is_valid_bno(const QString& bno);
     Ui::borrow *ui;
+    QString user_id;
 };
 
 #endif // BORROW_H

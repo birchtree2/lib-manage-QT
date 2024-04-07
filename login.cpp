@@ -5,11 +5,13 @@
 #include <QSqlQuery>
 #include <mainwindow.h>
 #include <QLineEdit>
+#include <QCryptographicHash>
 login::login(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::login)
 {
     ui->setupUi(this);
+    ui->lineEdit_2->setEchoMode(QLineEdit::Password);
 }
 
 login::~login()
@@ -19,52 +21,40 @@ login::~login()
 
 void login::on_pushButton_clicked()
 {
-    ui->lineEdit_2->setEchoMode(QLineEdit::Password);
-    login::username=ui->lineEdit->text();
+    
+    QString id=ui->lineEdit->text();
     QString password=ui->lineEdit_2->text();
     QSqlQuery query;//#include <QSqlQuery>
-    if(login::username.length()!=0&&password.length()!=0){
-        //写下将要执行的SQL语句
-        QString instruction=QString("select password from users where number='%1'").arg(login::username);
-        /*%1，百分号后面数字并没有什么特别含义，但是需要按照从小到大的顺序写，从前到后依次与后面.arg(对应)
-        根据sql语句的格式可得，如果字段为字符串则需要加单引号，如果是数，则不需要加单引号*/
-        query.exec(instruction);//用工具执行这个语句
-        //如果返回结果为空
-        if(!query.next()){
-            QMessageBox::information(this, "登录失败", "用户名或者密码错误");
-        }
-        while(query.next())//循环执行结果的集合
-        {//开始判定
-            if(login::username=="0000"&&password=="123456"){//此处是我设定的管理员账号，如果是管理员，会跳转到MainWindow
-                this->close();
-                MainWindow* w=new MainWindow();
-                w->show();
-                break;
-            }
-            else//如果不是管理员，则跳转到userinterface
-                if(login::username!="0000"&&query.value(0).toString()==password){
-                    // this->close();
-                    // userinterface* w2=new userinterface();
-                    // w2->show();
-                     QMessageBox::information(this, "登录成功", "");
-                    break;
-                }
-                else{
-                    QMessageBox::information(this, "登录失败", "用户名或者密码错误");
-                    break;
-                }
-        }
+    //用id和密码登录  对密码进行hash,同时跟数据库里存储的密码hash值比较
+    // 得到该账户对应的盐值
+    query.prepare("SELECT salt FROM user WHERE id = :id");
+    query.bindValue(":id", id);
+    query.exec();
+    QString salt;
+    if(query.next()){
+        salt=query.value(0).toString();
+    }else{
+        QMessageBox::information(this, "登录失败", "用户ID"+id+"不存在");
+        return;
     }
-    else{
-        QMessageBox::warning(this,"登录失败","不能为空！");
+    // 将密码和盐值连接后进行哈希
+    QCryptographicHash hasher(QCryptographicHash::Sha256); 
+    hasher.addData((password+salt).toUtf8());
+    QString hashedPassword = hasher.result().toHex();
+    qDebug()<<hashedPassword<<salt;
+    // 利用哈希过的密码进行登录
+    query.prepare("SELECT id FROM user WHERE id = :id AND password = :password");
+    query.bindValue(":id", id);
+    query.bindValue(":password", hashedPassword);
+    query.exec();
+    if(query.next()){
+        qDebug()<<id;
+        this->hide();
+        MainWindow *w=new MainWindow(id);
+        w->show();
+    }else{
+        QMessageBox::information(this, "登录失败", "用户名或密码错误");
     }
-    //在登录时获得登录用户的id，后面要用
-    QString getId=QString("select id from users where number='%1'").arg(login::username);
-    query.exec(getId);
-    while(query.next()){
-        login::id=query.value(0).toInt();
-    }
-
 }
 
 

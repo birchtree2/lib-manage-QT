@@ -40,12 +40,12 @@
      <string>退出登录</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="login">
+   <widget class="QPushButton" name="adduser">
     <property name="geometry">
      <rect>
       <x>490</x>
       <y>150</y>
-      <width>81</width>
+      <width>141</width>
       <height>21</height>
      </rect>
     </property>
@@ -111,6 +111,19 @@
     </property>
     <property name="text">
      <string>借书证管理</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cur_user">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>80</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前管理员:</string>
     </property>
    </widget>
   </widget>

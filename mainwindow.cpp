@@ -5,11 +5,14 @@
 #include "qbook.h"
 #include "addbook.h"
 #include "card.h"
-MainWindow::MainWindow(QWidget *parent)
+#include "user.h"
+MainWindow::MainWindow(const QString& uid,QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),user_id(uid)
 {
     ui->setupUi(this);
+    qDebug()<<user_id;
+    ui->cur_user->setText("当前管理员："+user_id);
 }
 
 MainWindow::~MainWindow()
@@ -26,7 +29,7 @@ void MainWindow::on_login_clicked()
 
 void MainWindow::on_borrow_clicked()
 {
-    borrow *p=new borrow();
+    borrow *p=new borrow(this->user_id);
     p->show();
 }
 
@@ -56,6 +59,13 @@ void MainWindow::on_borrow_2_clicked()
 void MainWindow::on_borrow_3_clicked()
 {
     card *p=new card();
+    p->show();
+}
+
+
+void MainWindow::on_adduser_clicked()
+{
+    user* p=new user();
     p->show();
 }
 

@@ -15,7 +15,8 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    qbook.cpp
+    qbook.cpp \
+    user.cpp
 
 HEADERS += \
     addbook.h \
@@ -23,7 +24,8 @@ HEADERS += \
     card.h \
     login.h \
     mainwindow.h \
-    qbook.h
+    qbook.h \
+    user.h
 
 FORMS += \
     addbook.ui \
@@ -31,7 +33,8 @@ FORMS += \
     card.ui \
     login.ui \
     mainwindow.ui \
-    qbook.ui
+    qbook.ui \
+    user.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

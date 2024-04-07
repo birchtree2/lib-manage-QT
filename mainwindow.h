@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(const QString& id,QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -30,7 +30,10 @@ private slots:
 
     void on_borrow_3_clicked();
 
+    void on_adduser_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QString user_id;//管理员登录id
 };
 #endif // MAINWINDOW_H

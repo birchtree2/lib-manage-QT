@@ -2,9 +2,9 @@
 #include "ui_borrow.h"
 #include <QSqlQuery>
 #include <QMessageBox>
-borrow::borrow(QWidget *parent)
+borrow::borrow(const QString& uid,QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::borrow)
+    , ui(new Ui::borrow),user_id(uid)
 {
     ui->setupUi(this);
 }
@@ -96,7 +96,7 @@ void borrow::on_pushButton_2_clicked()//借书
 {
     QString cno=ui->cno->text();
     QString bno=ui->bno->text();
-    QString admin_id="2001";
+    QString admin_id=this->user_id;//获取当前登录用户名id
     QSqlQuery query;
     if(cno.length()!=0 && bno.length()!=0 && admin_id.length()!=0){
         if(!is_valid_cno(cno)||!is_valid_bno(bno)) return;
