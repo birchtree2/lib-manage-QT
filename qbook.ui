@@ -257,6 +257,21 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>年份</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>价格</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>书名</string>
+     </property>
+    </item>
    </widget>
    <widget class="QComboBox" name="comboBox_2">
     <property name="geometry">
@@ -267,6 +282,16 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>升序</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>降序</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">

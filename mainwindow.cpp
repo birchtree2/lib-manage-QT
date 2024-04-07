@@ -4,6 +4,7 @@
 #include "borrow.h"
 #include "qbook.h"
 #include "addbook.h"
+#include "card.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -48,6 +49,13 @@ void MainWindow::on_query_clicked()
 void MainWindow::on_borrow_2_clicked()
 {
     addbook *p=new addbook();
+    p->show();
+}
+
+
+void MainWindow::on_borrow_3_clicked()
+{
+    card *p=new card();
     p->show();
 }
 

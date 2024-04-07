@@ -28,6 +28,8 @@ private slots:
 
     void on_borrow_2_clicked();
 
+    void on_borrow_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

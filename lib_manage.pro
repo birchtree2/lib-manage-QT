@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     addbook.cpp \
     borrow.cpp \
+    card.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     addbook.h \
     borrow.h \
+    card.h \
     login.h \
     mainwindow.h \
     qbook.h
@@ -26,6 +28,7 @@ HEADERS += \
 FORMS += \
     addbook.ui \
     borrow.ui \
+    card.ui \
     login.ui \
     mainwindow.ui \
     qbook.ui

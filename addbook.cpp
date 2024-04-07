@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include<QMessageBox>
 #include<QSqlQuery>
+#include<QSqlError>
 addbook::addbook(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::addbook)
@@ -87,8 +88,10 @@ void addbook::on_pushButton_clicked()
         query.bindValue(":total_stock", total_stock);
         query.bindValue(":stock", total_stock);
         if(!query.exec()){
-            QMessageBox::information(this, "入库失败", "插入失败");
+            QMessageBox::information(this, "入库失败", "插入失败:"+query.lastError().text());
             return;
+        }else{
+            QMessageBox::information(this, "入库成功", "插入成功");
         }
 
     }

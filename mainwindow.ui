@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="borrow">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>210</y>
+      <x>330</x>
+      <y>150</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -43,21 +43,21 @@
    <widget class="QPushButton" name="login">
     <property name="geometry">
      <rect>
-      <x>329</x>
+      <x>490</x>
       <y>150</y>
       <width>81</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>管理员登录</string>
+     <string>(root)增删管理员</string>
     </property>
    </widget>
    <widget class="QPushButton" name="query">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>210</y>
+      <x>170</x>
+      <y>150</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -91,7 +91,7 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>150</y>
+      <y>210</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -103,8 +103,8 @@
    <widget class="QPushButton" name="borrow_3">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>150</y>
+      <x>330</x>
+      <y>210</y>
       <width>80</width>
       <height>21</height>
      </rect>
