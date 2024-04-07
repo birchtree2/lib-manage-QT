@@ -26,6 +26,8 @@ private slots:
 
     void on_query_clicked();
 
+    void on_borrow_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
