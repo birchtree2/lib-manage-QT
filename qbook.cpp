@@ -78,6 +78,36 @@ void qbook::on_pushButton_clicked()
             query.bindValue(":price2", ui->price2->text());
         }
     }
+    //根据qcombobox选择排序方式 
+    switch (ui->orderkey->currentIndex()) {
+        case 0:
+            baseQuery += " order by title";
+            break;
+        case 1:
+            baseQuery += " order by bno";
+            break;
+        case 2:
+            baseQuery += " order by year";
+            break;
+        case 3:
+            baseQuery += " order by price";
+            break;
+        case 4:
+            baseQuery += " order by author";
+            break;
+        default: 
+            baseQuery += " order by title";
+            break;
+    }
+    switch (ui->orderway->currentIndex()) {
+        case 0:
+            baseQuery += " asc";
+            break;
+        case 1:
+            baseQuery += " desc";
+            break;
+        default: break;
+    }
     //输出准备好的sql
     qDebug()<<baseQuery;
     // qDebug()<<"ok";

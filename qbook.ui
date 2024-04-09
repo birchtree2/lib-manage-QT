@@ -248,7 +248,7 @@
      <string>查询</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="orderkey">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -257,6 +257,16 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>书名</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>书号</string>
+     </property>
+    </item>
     <item>
      <property name="text">
       <string>年份</string>
@@ -269,11 +279,16 @@
     </item>
     <item>
      <property name="text">
-      <string>书名</string>
+      <string>作者</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="orderway">
     <property name="geometry">
      <rect>
       <x>310</x>

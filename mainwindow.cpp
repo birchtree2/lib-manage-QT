@@ -6,6 +6,7 @@
 #include "addbook.h"
 #include "card.h"
 #include "user.h"
+#include<QMessageBox>
 MainWindow::MainWindow(const QString& uid,QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow),user_id(uid)
@@ -65,6 +66,11 @@ void MainWindow::on_borrow_3_clicked()
 
 void MainWindow::on_adduser_clicked()
 {
+    if(this->user_id!="2001"){
+        QMessageBox::information(this,"错误","仅管理员有增删用户权限!");
+        return;
+    }
+
     user* p=new user();
     p->show();
 }
