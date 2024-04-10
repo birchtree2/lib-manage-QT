@@ -48,7 +48,37 @@ void qbook::on_pushButton_clicked()
             baseQuery += " AND price <= :price2";
         }
     }
-    query.prepare(baseQuery);//准备查询
+    //根据qcombobox选择排序方式
+    switch (ui->orderkey->currentIndex()) {
+    case 0:
+        baseQuery += " order by title";
+        break;
+    case 1:
+        baseQuery += " order by bno";
+        break;
+    case 2:
+        baseQuery += " order by year";
+        break;
+    case 3:
+        baseQuery += " order by price";
+        break;
+    case 4:
+        baseQuery += " order by author";
+        break;
+    default:
+        baseQuery += " order by title";
+        break;
+    }
+    switch (ui->orderway->currentIndex()) {
+    case 0:
+        baseQuery += " asc";
+        break;
+    case 1:
+        baseQuery += " desc";
+        break;
+    default: break;
+    }
+    query.prepare(baseQuery);//先prepare,再绑定变量
     //bindValue防止sql注入
     if (ui->checkauthor->checkState() == Qt::Checked) {
         query.bindValue(":author", ui->author->text());
@@ -78,39 +108,8 @@ void qbook::on_pushButton_clicked()
             query.bindValue(":price2", ui->price2->text());
         }
     }
-    //根据qcombobox选择排序方式 
-    switch (ui->orderkey->currentIndex()) {
-        case 0:
-            baseQuery += " order by title";
-            break;
-        case 1:
-            baseQuery += " order by bno";
-            break;
-        case 2:
-            baseQuery += " order by year";
-            break;
-        case 3:
-            baseQuery += " order by price";
-            break;
-        case 4:
-            baseQuery += " order by author";
-            break;
-        default: 
-            baseQuery += " order by title";
-            break;
-    }
-    switch (ui->orderway->currentIndex()) {
-        case 0:
-            baseQuery += " asc";
-            break;
-        case 1:
-            baseQuery += " desc";
-            break;
-        default: break;
-    }
-    //输出准备好的sql
-    qDebug()<<baseQuery;
-    // qDebug()<<"ok";
+
+    //准备查询
     query.exec();
     // qDebug()<<query.next();
     QStringList header;

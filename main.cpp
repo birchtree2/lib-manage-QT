@@ -2,6 +2,7 @@
 // #include <QCoreApplication>
 #include <QApplication>
 #include <QSqlDatabase>
+#include<QSqlQuery>
 #include "login.h"
 int main(int argc, char *argv[])
 {
@@ -22,7 +23,12 @@ int main(int argc, char *argv[])
     {
         qDebug()<<"数据库打开失败";
     }
-
+    // QSqlQuery q;
+    // q.prepare("SELECT bno,category,title,publisher,year,author,price,total_stock,stock FROM book WHERE 1=1 order by price asc");
+    // q.exec();
+    // while(q.next()){
+    //     qDebug()<<q.value(0).toString();
+    // }
     login w;
     w.show();
     return a.exec();

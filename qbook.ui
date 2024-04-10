@@ -122,7 +122,7 @@
      <rect>
       <x>90</x>
       <y>120</y>
-      <width>41</width>
+      <width>51</width>
       <height>20</height>
      </rect>
     </property>
@@ -143,9 +143,9 @@
    <widget class="QLineEdit" name="year2">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>120</y>
-      <width>41</width>
+      <width>51</width>
       <height>20</height>
      </rect>
     </property>
@@ -319,6 +319,19 @@
     </property>
     <property name="text">
      <string>价格可使用2位小数</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>160</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>排序方式</string>
     </property>
    </widget>
   </widget>
