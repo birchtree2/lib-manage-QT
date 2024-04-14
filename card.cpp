@@ -100,6 +100,14 @@ void card::on_del_clicked()
     query.bindValue(":cno", cno);
     query.exec();
     if(query.next()){
+        //查询是否有书未归还
+        query.prepare("select bno from borrows where cno = :cno and return_date>now()");
+        query.bindValue(":cno", cno);
+        query.exec();
+        if(query.next()){
+            QMessageBox::information(this, "删除失败", "卡号"+cno+"还有书未归还");
+            return;
+        }
         query.prepare("delete from card where cno=:cno");
         query.bindValue(":cno", cno);
         if(query.exec()){

@@ -36,6 +36,9 @@ void addbook::on_pushButton_clicked()
         while (!in.atEnd()) {
             total_cnt++;
             QString line = in.readLine();
+            //如果有的话，去掉头尾的()
+            if(line[0]=='(') line=line.mid(1,line.length()-2);
+            if(line[line.length()-1]==')') line=line.mid(0,line.length()-1);
             QStringList list = line.split(",");
             if(list.size()!=8){
                 QMessageBox::information(this, "入库失败", "文件格式错误,每行用逗号分隔，显示(书号, 类别, 书名, 出版社, 年份, 作者, 价格, 数量 )");
@@ -62,10 +65,13 @@ void addbook::on_pushButton_clicked()
             query.bindValue(":stock", total_stock);
             //分别显示成功和失败
             if(query.exec()){
-               succ_cnt++; 
+               succ_cnt++;
+            }else{
+                qDebug()<<query.lastError().text();
             }
         }
-        QMessageBox::information(this, "入库结果", QString("共%1条记录,成功入库%2条").arg(total_cnt,succ_cnt));
+        QMessageBox::information(this, "入库结果", 
+            "共"+QString::number(total_cnt)+"条记录，成功"+QString::number(succ_cnt)+"条");
 
     }else{//单本入库
         QString bno=ui->lineEdit->text();
